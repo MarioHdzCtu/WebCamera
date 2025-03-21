@@ -6,8 +6,8 @@ from fastapi.staticfiles import StaticFiles
 
 some_file_path = "otro_video.mp4"
 app = FastAPI()
-app.mount("./src/webserver/templates", StaticFiles(directory="/src/webserver/templates"), name="templates")
-templates = Jinja2Templates(directory="templates")
+# app.mount("./src/webserver/templates", StaticFiles(directory="/src/webserver/templates"), name="templates")
+# templates = Jinja2Templates(directory="templates")
 
 @app.get("/video-example")
 def main():
@@ -23,9 +23,9 @@ def video_feed():
     return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
 
 
-@app.get("/", response_class=HTMLResponse)
-def index(request: Request):
-    w, h = get_camera_dimensions()
-    return templates.TemplateResponse(
-        request=request, name="index.html", context={"w": w, "h": h}
-    )
+# @app.get("/", response_class=HTMLResponse)
+# def index(request: Request):
+#     w, h = get_camera_dimensions()
+#     return templates.TemplateResponse(
+#         request=request, name="index.html", context={"w": w, "h": h}
+#     )
